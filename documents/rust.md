@@ -33,7 +33,7 @@ hello
 
 ## Cargo
 
-Rustのパッケージ管理。Pythonでいうpip？
+Rustのパッケージ管理。Pythonでいうpip、pipenv？
 
 ### 新しいプロジェクトの作成
 
