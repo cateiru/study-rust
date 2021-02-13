@@ -111,7 +111,7 @@ fn main() {
 
 - char型
 
-  4バイトであり、Unicodeで表す。
+  4バイトであり、Unicodeで表す。`'`で囲む。
 
   ```rust
   fn main() {
@@ -155,7 +155,7 @@ fn main() {
 
 - Array
 
-  配列のすべての要素は同じ型である必要がある。
+  配列のすべての要素は同じ型である必要がある。要素数は固定。
 
   ```rust
   fn main() {
@@ -170,5 +170,143 @@ fn main() {
 
 ## 関数
 
-命名規則: スネークケース
+命名規則: スネークケース。
+
+関数定義は`main()`の前後どこでもOK
+
+```rust
+fn main() {
+  another_function();
+}
+
+fn another_function() {
+  println!("Another function.");
+}
+```
+
+引数:
+
+```rust
+fn main() {
+  another_functions(5);
+}
+
+fn another_functions(x: i32) {
+  println!("The value of x is: {}", x);
+}
+```
+
+クロージャー:
+
+```rust
+fn main() {
+  let x = 5;
+  let y = {
+    let x = 3;
+    x + 1
+  };
+  
+  println!("The value of y is: {}", y); // The value of y is: 4
+}
+```
+
+戻り値:
+
+`;`をつけないとReturnになる。
+
+## コメントアウト
+
+```rust
+// コ↑レ↓
+```
+
+## 分岐
+
+### `if`
+
+```rust
+fn main() {
+  let number = 3;
+  
+  if number < 5 {
+   	println!("condition was true");
+  } else {
+    println!("condition was false");
+  }
+}
+```
+
+```rust
+fn main() {
+    let condition = true;
+    let number = if condition { 5 } else { 6 };
+
+    println!("The value of number is: {}", number);
+}
+```
+
+### `else if`
+
+```rust
+fn main() {
+  let number = 6;
+  
+    if number % 4 == 0 {
+        println!("number is divisible by 4");
+    } else if number % 3 == 0 {
+        println!("number is divisible by 3");
+    } else if number % 2 == 0 {
+        println!("number is divisible by 2");
+    } else {
+        println!("number is not divisible by 4, 3, or 2");
+    }
+}
+```
+
+## 繰り返し
+
+### `loop`
+
+無限ループ 抜け出すには`break`
+
+```rust
+fn main() {
+  loop {
+    println!("again!");
+  }
+}
+```
+
+### `while`
+
+```rust
+fn main() {
+  let mut number = 3;
+  
+  while number != 0 {
+    println!("{}!", number);
+    
+    number -= 1;
+  }
+  
+  println!("LIFTOFF!!!");
+  
+  // 3!
+	// 2!
+	// 1!
+	// LIFTOFF!!!
+}
+```
+
+### `for`
+
+```rust
+fn main() {
+  let a = [10, 20, 30, 40, 50];
+  
+  for element in a.iter() {
+    println!("The value is: {}", element);
+  }
+}
+```
 
