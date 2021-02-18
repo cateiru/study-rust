@@ -1,6 +1,7 @@
 use std::env;
+use std::{error::Error};
 
-fn main() -> std::io::Result<()> {
+fn main() -> Result<(), Box<dyn Error>> {
   let a = env::current_dir()?;
 
   println!("{}", a.display());
