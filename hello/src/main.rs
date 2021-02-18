@@ -1,7 +1,11 @@
-fn main() {
-    let a = [10, 20, 30, 40, 50];
-
-    for element in 0..a.len() {
-        println!("{}", element);
+fn fac_recursive(n: u32) -> u32 {
+    if n <= 1 {
+        1
+    } else {
+        n * fac_recursive(n - 1)
     }
+}
+
+fn main() {
+    println!("{}", fac_recursive(2));
 }
