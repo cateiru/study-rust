@@ -1,9 +1,10 @@
-use std::process;
+use std::{path::Path, process};
 
 use clap::{App, Arg};
 
 pub struct Cli {
-  pub target_path: String,
+  target_path: String,
+  file_path: String,
 }
 
 impl Cli {
@@ -15,24 +16,42 @@ impl Cli {
           .long("target")
           .takes_value(true),
       )
+      .arg(
+        Arg::with_name("file")
+          .short("f")
+          .long("f")
+          .takes_value(true),
+      )
       .get_matches();
 
-    let target_path = matches.value_of("target");
+    let target_path = check_args(matches.value_of("target"));
+    let file_path = check_args(matches.value_of("file"));
 
-    match target_path {
-      Some(path) => Cli {
-        target_path: path.to_string(),
-      },
-      None => {
-        // if `--target` flag value is none, call error and exit.
-        println!("Error: target is none.");
-        process::exit(1);
-      }
+    Cli {
+      target_path: target_path.to_string(),
+      file_path: target_path.to_string(),
     }
   }
 
-  // pub fn create_path(&self) -> Path {
-  //   let path: &str = &self.target_path;
-  //   Path::new(path)
-  // }
+  /// Return the target path.
+  /// parse in the Path.
+  pub fn target(&self) -> &str {
+    let path = Path::new(&self.target_path);
+    match path.to_str() {
+      Some(a) => a,
+      _ => process::exit(1),
+    }
+  }
+}
+
+/// Check Optional element.
+/// if it is none, throw error.
+fn check_args<T>(element: Option<T>) -> T {
+  match element {
+    Some(path) => path,
+    None => {
+      println!("Error: target is none.");
+      process::exit(1);
+    }
+  }
 }
