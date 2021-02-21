@@ -19,7 +19,7 @@ impl Cli {
       .arg(
         Arg::with_name("file")
           .short("f")
-          .long("f")
+          .long("file")
           .takes_value(true),
       )
       .get_matches();
@@ -35,12 +35,8 @@ impl Cli {
 
   /// Return the target path.
   /// parse in the Path.
-  pub fn target(&self) -> &str {
-    let path = Path::new(&self.target_path);
-    match path.to_str() {
-      Some(a) => a,
-      _ => process::exit(1),
-    }
+  pub fn target(&self) -> &Path {
+    Path::new(&self.target_path)
   }
 }
 
@@ -50,7 +46,7 @@ fn check_args<T>(element: Option<T>) -> T {
   match element {
     Some(path) => path,
     None => {
-      println!("Error: target is none.");
+      println!("Error");
       process::exit(1);
     }
   }
