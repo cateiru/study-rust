@@ -44,10 +44,10 @@ fn files(dir: &Path, indent: String) -> io::Result<()> {
             if path.is_dir() {
                 if all_files - 1 == index {
                     println!("{}└─ {:?}", indent, path);
-                    new_indent = format!("{}  ", indent);
+                    new_indent = format!("{}    ", indent);
                 } else {
                     println!("{}├─ {:?}", indent, path);
-                    new_indent = format!("{}│ ", indent);
+                    new_indent = format!("{}│   ", indent);
                 }
 
                 files(&path, new_indent)?;
