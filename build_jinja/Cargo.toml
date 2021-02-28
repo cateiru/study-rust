@@ -1,0 +1,13 @@
+[package]
+name = "build_jinja"
+version = "0.1.0"
+authors = ["Yuto Watanabe <yuto.w51942@gmail.com>"]
+edition = "2018"
+include = ["Cargo.lock", "Cargo.toml","build.rs", "src/**/*"]
+build = "build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tera = "1.6.1"
+serde_json = "1.0.62"
