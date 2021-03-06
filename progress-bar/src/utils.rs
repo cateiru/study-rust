@@ -27,3 +27,17 @@ pub fn create_bar(ratio: f64, width: usize) -> String {
   }
   bar
 }
+
+pub fn progress_bar(i: usize, max_size: usize, sleep_time: u64) {
+  let ratio = ((i as f64 / max_size as f64) * 100f64) as usize;
+  let space: String = {
+    match ratio as usize {
+      n if n < 10 => String::from("  "),
+      100 => String::from(""),
+      _ => String::from(" "),
+    }
+  };
+  let bar = create_bar(ratio as f64 / 100f64, max_size);
+  print_data(format!("{:}%{} |{}|", ratio, space, bar));
+  sleep(sleep_time);
+}
